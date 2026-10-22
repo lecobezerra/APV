@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Regras e Aceite de Entrada | Comunidade</title>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <style>
+    :root {
+      --bg: #0f172a;
+      --card-bg: #1e293b;
+      --primary: #22c55e;
+      --primary-hover: #16a34a;
+      --text: #f8fafc;
+      --text-muted: #94a3b8;
+      --border: #334155;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    }
+
+    body {
+      background-color: var(--bg);
+      color: var(--text);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      padding: 20px;
+    }
+
+    .container {
+      background-color: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      max-width: 580px;
+      width: 100%;
+      padding: 24px;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
+    }
+
+    h1 {
+      font-size: 1.3rem;
+      margin-bottom: 6px;
+      text-align: center;
+    }
+
+    p.subtitle {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      margin-bottom: 20px;
+      text-align: center;
+      line-height: 1.4;
+    }
+
+    .card-regras {
+      background: #0f172a;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 16px;
+      margin-bottom: 16px;
+    }
+
+    .card-regras h3 {
+      font-size: 0.95rem;
+      margin-bottom: 8px;
+      color: #38bdf8;
+    }
+
+    .card-regras p {
+      font-size: 0.82rem;
+      color: var(--text-muted);
+      line-height: 1.45;
+      margin-bottom: 8px;
+    }
+
+    .card-regras p strong {
+      color: #e2e8f0;
+    }
+
+    label.check-label {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      font-size: 0.82rem;
+      cursor: pointer;
+      font-weight: 500;
+      color: #f1f5f9;
+      margin-top: 10px;
+      padding-top: 8px;
+      border-top: 1px solid var(--border);
+    }
+
+    label.check-label input {
+      margin-top: 2px;
+    }
+
+    .inputs-grid {
+      display: grid;
+      grid-template-columns: 1fr 2fr;
+      gap: 12px;
+      margin-top: 20px;
+      margin-bottom: 20px;
+    }
+
+    .input-group {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .input-group label {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+    }
+
+    input[type="text"] {
+      background: #0f172a;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 10px;
+      color: var(--text);
+      font-size: 1rem;
+      text-align: center;
+      outline: none;
+    }
+
+    input[type="text"]:focus {
+      border-color: #38bdf8;
+    }
+
+    button {
+      width: 100%;
+      background-color: var(--primary);
+      color: #fff;
+      font-weight: 600;
+      font-size: 1rem;
+      padding: 12px;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: background-color 0.2s;
+    }
+
+    button:hover:not(:disabled) {
+      background-color: var(--primary-hover);
+    }
+
+    button:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+
+    .msg {
+      margin-top: 15px;
+      font-size: 0.85rem;
+      text-align: center;
+    }
+    .msg.error { color: #ef4444; }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <h1>Alienação Parental e Falsas Acusações</h1>
+    <p class="subtitle">Leia e confirme o alinhamento com as diretrizes da comunidade para liberar a entrada na Sala de Espera[cite: 1].</p>
+
+    <form id="formAceite">
+      <!-- Bloco 1: Convivência e Foco -->
+      <div class="card-regras">
+        <h3>1. Objetivo e Foco na Causa</h3>
+        <p><strong>🎯 Objetivo:</strong> Organizar a causa, produzir conteúdo, divulgar informação e formar porta-vozes sobre alienação parental, falsas acusações e direito à convivência familiar. Não somos grupo terapêutico e não prestamos assistência psicológica ou jurídica.</p>
+        <p><strong>1️⃣ Sem desabafos:</strong> Não é espaço para lamentações, relatos extensos ou competição de sofrimento.</p>
+        <p><strong>2️⃣ Foco na causa:</strong> Notícias, estudos, projetos e estratégias são bem-vindos. Futebol, pornografia, correntes e assuntos aleatórios ficam fora.</p>
+        <p><strong>3️⃣ Histórias com finalidade:</strong> Relatos apenas com objetivo definido (vídeos, depoimentos, conteúdo educativo), sempre preservando a identidade e privacidade de crianças e adolescentes.</p>
+        <label class="check-label">
+          <input type="checkbox" id="etapa1" required>
+          Entendo o objetivo e concordo em manter o foco na causa
+        </label>
+      </div>
+
+      <!-- Bloco 2: Proibições e Proteção -->
+      <div class="card-regras">
+        <h3>2. Respeito, Sigilo e Limites</h3>
+        <p><strong>4️⃣ Respeito:</strong> Discordar faz parte. Ofensas, ameaças, perseguições e ataques pessoais são terminantemente proibidos.</p>
+        <p><strong>5️⃣ Sem exposição indevida:</strong> Proibida a divulgação de dados pessoais, documentos sigilosos de processos ou imagens de crianças e terceiros sem autorização.</p>
+        <p><strong>6️⃣ Sem orientação improvisada:</strong> Opiniões pessoais e relatos de experiência não devem ser apresentados como orientação jurídica ou psicológica profissional.</p>
+        <label class="check-label">
+          <input type="checkbox" id="etapa2" required>
+          Concordo com as proibições, sigilo e limites profissionais
+        </label>
+      </div>
+
+      <!-- Bloco 3: Ciência e Moderação -->
+      <div class="card-regras">
+        <h3>3. Moderação Ativa e Consequências</h3>
+        <p>A entrada no grupo depende da validação prévia dos dados e ciência integral destas diretrizes[cite: 1].</p>
+        <p>O descumprimento de qualquer uma das regras acima acarretará advertência imediata ou banimento definitivo do grupo, a critério dos administradores[cite: 1].</p>
+        <label class="check-label">
+          <input type="checkbox" id="etapa3" required>
+          Estou ciente das regras e aceito a autoridade da moderação
+        </label>
+      </div>
+
+      <!-- Identificação -->
+      <div class="inputs-grid">
+        <div class="input-group">
+          <label for="ddd">DDD</label>
+          <input type="text" id="ddd" maxlength="2" placeholder="Ex: 11" required>
+        </div>
+        <div class="input-group">
+          <label for="digitos">Últimos 4 Dígitos</label>
+          <input type="text" id="digitos" maxlength="4" placeholder="Ex: 8901" required>
+        </div>
+      </div>
+
+      <button type="submit" id="btnSubmit">Avançar para o WhatsApp</button>
+      <div id="statusMsg" class="msg"></div>
+    </form>
+  </div>
+
+  <script>
+    const SUPABASE_URL = "https://ncbfcckywvhftmvjovek.supabase.co"; 
+    const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im5jYmZjY2t5d3ZoZnRtdmpvdmVrIiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTI2OTk2NTUsImV4cCI6MjEwODI3NTY1NX0.ZzfDjv7qMacdEHe11uLLuL9fcpULaMQU-fRxVZEIDWc";
+    const LINK_SALA_DE_ESPERA = "https://chat.whatsapp.com/D3GWJvMS9507DipX0n9zQW?s=cl&p=a&mlu=4&ilr=4";
+
+    const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+
+    const form = document.getElementById("formAceite");
+    const btn = document.getElementById("btnSubmit");
+    const statusMsg = document.getElementById("statusMsg");
+
+    form.addEventListener("submit", async (e) => {
+      e.preventDefault();
+
+      const ddd = document.getElementById("ddd").value.trim();
+      const digitos = document.getElementById("digitos").value.trim();
+      const etapa1 = document.getElementById("etapa1").checked;
+      const etapa2 = document.getElementById("etapa2").checked;
+      const etapa3 = document.getElementById("etapa3").checked;
+
+      if (ddd.length !== 2 || isNaN(ddd)) {
+        statusMsg.className = "msg error";
+        statusMsg.innerText = "Informe um DDD válido com 2 dígitos.";
+        return;
+      }
+
+      if (digitos.length !== 4 || isNaN(digitos)) {
+        statusMsg.className = "msg error";
+        statusMsg.innerText = "Informe exatamente os 4 dígitos finais do número.";
+        return;
+      }
+
+      btn.disabled = true;
+      btn.innerText = "Validando...";
+      statusMsg.innerText = "";
+
+      try {
+        const { data, error } = await supabase
+          .from("solicitacoes_aceite")
+          .insert([
+            {
+              ddd: ddd,
+              ultimos_digitos: digitos,
+              aceite_etapa1: etapa1,
+              aceite_etapa2: etapa2,
+              aceite_etapa3: etapa3,
+              status: "pendente"
+            }
+          ]);
+
+        if (error) throw error;
+
+        window.location.href = LINK_SALA_DE_ESPERA;
+
+      } catch (err) {
+        console.error("Erro no envio:", err);
+        statusMsg.className = "msg error";
+        statusMsg.innerText = "Erro ao registrar aceite. Tente novamente.";
+        btn.disabled = false;
+        btn.innerText = "Avançar para o WhatsApp";
+      }
+    });
+  </script>
+</body>
+</html>
