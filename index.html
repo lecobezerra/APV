@@ -207,16 +207,17 @@
       </div>
 
       <!-- Identificação -->
-      <div class="inputs-grid">
-        <div class="input-group">
-          <label for="ddd">DDD</label>
-          <input type="text" id="ddd" maxlength="2" placeholder="Ex: 11" required>
-        </div>
-        <div class="input-group">
-          <label for="digitos">Últimos 4 Dígitos</label>
-          <input type="text" id="digitos" maxlength="4" placeholder="Ex: 8901" required>
-        </div>
-      </div>
+      <div class="phone-group">
+  <div class="field-item field-ddd">
+    <label for="ddd">DDD</label>
+    <input type="tel" id="ddd" name="ddd" maxlength="2" placeholder="11" required>
+  </div>
+  
+  <div class="field-item field-digitos">
+    <label for="ultimos_digitos">Finais (4 dígitos)</label>
+    <input type="tel" id="ultimos_digitos" name="ultimos_digitos" maxlength="4" placeholder="8888" required>
+  </div>
+</div>
 
       <button type="submit" id="btnSubmit">Avançar para o WhatsApp</button>
       <div id="statusMsg" class="msg"></div>
