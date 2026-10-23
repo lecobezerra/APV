@@ -244,4 +244,47 @@
       const etapa3 = document.getElementById("etapa3").checked;
 
       if (ddd.length !== 2 || isNaN(ddd)) {
-        statusMsg.className = "msg
+        statusMsg.className = "msg error";
+        statusMsg.innerText = "Informe um DDD válido com 2 dígitos.";
+        return;
+      }
+
+      if (digitos.length !== 4 || isNaN(digitos)) {
+        statusMsg.className = "msg error";
+        statusMsg.innerText = "Informe exatamente os 4 dígitos finais do número.";
+        return;
+      }
+
+      btn.disabled = true;
+      btn.innerText = "Validando...";
+      statusMsg.innerText = "";
+
+      try {
+        const { data, error } = await supabaseClient
+          .from("solicitacoes_aceite")
+          .insert([
+            {
+              ddd: ddd,
+              ultimos_digitos: digitos,
+              aceite_etapa1: etapa1,
+              aceite_etapa2: etapa2,
+              aceite_etapa3: etapa3,
+              status: "pendente"
+            }
+          ]);
+
+        if (error) throw error;
+
+        window.location.href = LINK_SALA_DE_ESPERA;
+
+      } catch (err) {
+        console.error("Erro no envio:", err);
+        statusMsg.className = "msg error";
+        statusMsg.innerText = "Erro ao registrar aceite. Tente novamente.";
+        btn.disabled = false;
+        btn.innerText = "Avançar para o WhatsApp";
+      }
+    });
+  </script>
+</body>
+</html>
